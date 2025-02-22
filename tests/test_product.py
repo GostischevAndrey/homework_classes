@@ -1,3 +1,6 @@
+import pytest
+
+
 def test_classes_product(product_1):
     assert product_1.name == "55\" QLED 4K"
     assert product_1.description == "Фоновая подсветка"
@@ -28,3 +31,8 @@ def test_add_products(product_2, product_3):
     total_value = product_2 + product_3
     expected_value = (180000.0 * 5) + (31000.0 * 14)
     assert total_value == expected_value
+
+
+def test_product_type_error(product_1):
+    with pytest.raises(TypeError):
+        product_1 + "Не продукт" # noqa

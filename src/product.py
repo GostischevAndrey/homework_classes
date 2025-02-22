@@ -13,8 +13,10 @@ class Product:
     def __str__(self) -> str:
         return f'Название продукта {self.name}, {self.price} руб. Остаток: {self.quantity} шт.'
 
-    def __add__(self, other: 'Product') -> float:
-        return self.__price * self.quantity + other.__price * other.quantity
+    def __add__(self, other: 'Product') -> float :
+        if type(other) is Product:
+            return self.__price * self.quantity + other.__price * other.quantity
+        raise TypeError
 
     @classmethod
     def new_product(cls, new_product: dict) -> 'Product':

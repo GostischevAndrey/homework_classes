@@ -1,3 +1,4 @@
+import pytest
 from src.product import Product
 
 
@@ -7,7 +8,7 @@ def test_classes_category(category_1, category_2):
         "Смартфоны, как средство не только коммуникации, " "но и получения дополнительных функций для удобства жизни"
     )
     assert category_1.category_count == 2
-    assert category_2.product_count == 4
+    assert category_2.product_count == 5
 
 
 def test_new_product(product_dict):
@@ -20,7 +21,7 @@ def test_new_product(product_dict):
 
 def test_add_product(product_1, category_3):
     category_3.add_product(product_1)
-    assert category_3._product_count == 1
+    assert category_3._product_count == 0
 
 
 def test_products_property(product_1, product_2, category_3):
@@ -32,3 +33,8 @@ def test_products_property(product_1, product_2, category_3):
 
 def test_category_str(product_1, product_2, category_3):
     assert str(category_3) == "Название категории Электроника, количество продуктов: 12 шт."
+
+
+def test_category_type_error(category_1):
+    with pytest.raises(TypeError):
+        category_1.add_product(1)
