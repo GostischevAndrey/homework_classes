@@ -1,5 +1,7 @@
 import pytest
 
+from src.product import Product
+
 
 def test_classes_product(product_1):
     assert product_1.name == "55\" QLED 4K"
@@ -36,3 +38,8 @@ def test_add_products(product_2, product_3):
 def test_product_type_error(product_1):
     with pytest.raises(TypeError):
         product_1 + "Не продукт" # noqa
+
+
+def test_product_value_error():
+    with pytest.raises(ValueError):
+        product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0) # noqa
