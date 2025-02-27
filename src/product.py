@@ -14,6 +14,10 @@ class Product(PrintMixin, BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        if self.quantity >= 1:
+            self.quantity = quantity
+        else:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
     def __str__(self) -> str:
