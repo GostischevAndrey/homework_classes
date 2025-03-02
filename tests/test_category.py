@@ -1,4 +1,6 @@
 import pytest
+
+from src.category import Category
 from src.product import Product
 
 
@@ -38,3 +40,11 @@ def test_category_str(product_1, product_2, category_3):
 def test_category_type_error(category_1):
     with pytest.raises(TypeError):
         category_1.add_product(1)
+
+
+def test_middle_price(all_products):
+    category1 = Category(name="тест", description="тест", products=all_products)
+    assert category1.middle_price() == 84423.08
+
+    category2 = Category(name="тест", description="тест", products=[])
+    assert category2.middle_price() == 0

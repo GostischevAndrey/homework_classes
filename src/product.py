@@ -14,6 +14,10 @@ class Product(PrintMixin, BaseProduct):
         self.description = description
         self.__price = price
         self.quantity = quantity
+        if self.quantity >= 1:
+            self.quantity = quantity
+        else:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
     def __str__(self) -> str:
@@ -32,7 +36,7 @@ class Product(PrintMixin, BaseProduct):
         quantity = new_product["quantity"]
         return cls(name, description, price, quantity)
 
-    @property
+    @property  # type: ignore
     def price(self) -> float:
         return self.__price
 
